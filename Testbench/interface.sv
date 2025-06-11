@@ -10,7 +10,7 @@ interface seq_if(input logic clk);
 
     //Clocking block for synchronization (for UVM)
     clocking cb @(posedge clk);
-        iniput out;
+        input out;
         output rst, in, overlap_en;
     endclocking
     
