@@ -29,8 +29,9 @@ module tb_101;
         overlap_en = 1;
         
         $display("Starting simulation...");
-//        $dumpfile("det_101.vcd");  //For waveform 
-//        $dumpvars(0, 101_tb);
+        //Comment the next 2 lines if using Vivado:
+        $dumpfile("det_101.vcd");  //For waveform 
+        $dumpvars(0, 101_tb);
         
         #12 rst = 0; 
         
