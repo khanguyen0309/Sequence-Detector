@@ -2,7 +2,7 @@
 ` define SEQUENCE_SV
 
 class simple_seq extends uvm_sequence #(seq_item);
-    `uvm_object_utils(simple_seq)
+    `uvm_object_utils(simple_seq)       //register a class to the factory
 
     function new(string name = "simple_seq");   //Function has no delay + has to return
         super.new(name);
