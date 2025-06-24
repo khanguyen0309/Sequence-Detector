@@ -1,25 +1,24 @@
-` ifndef SEQUENCE_SV
-` define SEQUENCE_SV
+class generator extends uvm_sequence #(transaction);
+    `uvm_object_utils(generator)       //register a class to the factory
 
-class simple_seq extends uvm_sequence #(seq_item);
-    `uvm_object_utils(simple_seq)       //register a class to the factory
+    transaction t;
+    integer i;
 
     //Constructor 
-    function new(string name = "simple_seq");   //Function has no delay + has to return
-        super.new(name);
+    function new(string path = "generator");   //Function has no delay + has to return
+        super.new(path);
     endfunction
 
 
     virtual task body();    //Task has delay, time control available + doesn't return
-        seq_item item;
+        t = transaction::type_id::create("t")
         
         repeat (10) begin
-            item = seq_item::type_id::create("item");
-            assert(item.randomize());
-            start_item(item);
-            finish_item(item);
+            start_item(t);
+            t.randomize();
+            `uvm_info("GEN", $sformatf("Data send to Driver in :%0d , rst :%0d , overlap :
+            %0d", t.in, t.rst, t.overlap_en), UVM_NONE);
+            finish_item(t);
         end
     endtask
 endclass
-
-`endif
